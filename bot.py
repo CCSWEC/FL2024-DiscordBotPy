@@ -31,4 +31,9 @@ async def on_ready():
 async def hello(interaction: discord.Interaction):
     await interaction.response.send_message(f"Hello, {interaction.user.mention}!", ephemeral=True)
 
+@bot.tree.command(name="say")
+@app_commands.describe(phrase = "What to say?")
+async def say(interaction: discord.Interaction, phrase:str):
+    await interaction.response.send_message(phrase)
+
 bot.run(ACCESS_TOKEN)
