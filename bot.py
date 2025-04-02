@@ -1,5 +1,5 @@
 from discord_bot_token import ACCESS_TOKEN
-
+import get_bash
 
 # This example requires the 'message_content' intent.
 
@@ -33,5 +33,10 @@ async def hello(interaction: discord.Interaction):
 @app_commands.describe(phrase = "What to say?")
 async def say(interaction: discord.Interaction, phrase:str):
     await interaction.response.send_message(phrase)
+
+@bot.tree.command(name="quote")
+#@app_commands.describe(phrase = "Pulls a random quote off of bash.")
+async def say(interaction: discord.Interaction):
+    await interaction.response.send_message("```"+get_bash.get_random_bash_post()+"```")
 
 bot.run(ACCESS_TOKEN)
